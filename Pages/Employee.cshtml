@@ -1,0 +1,77 @@
+﻿@page
+@model Nomina.Pages.EmployeeModel
+@{ ViewData["Title"] = "Employees";
+
+
+}
+
+<h1>Nomina</h1>
+
+<table class="table table-hover">
+
+    <tr class="bg-primary text-center">
+        <th>Nombre</th>
+        <th>Apellido</th>
+        <th>Cargo</th>
+        <th>Sueldo</th>
+        <th>ARS</th>
+        <th>AFP</th>
+        <th>IRS</th>
+        <th>Total Descuento</th>
+        <th>Sueldo Neto</th>
+    </tr>
+
+
+
+    @foreach (var employee in Model.Employees)
+    {
+        double SFS; double AFP; double IRS;
+        double Desc; double SueldoN;
+
+        if (employee.sueldo <= 100000)
+        {
+            if (true)
+            {
+                SFS = 0.0304 * @employee.sueldo;
+                AFP = 0.0287 * @employee.sueldo;
+                IRS = 0.0287 * @employee.sueldo;
+                Desc = (SFS + AFP);
+                SueldoN = Desc;
+            }
+            else
+            {
+                SFS = 0.0304 * @employee.sueldo;
+                AFP = 0.0287 * @employee.sueldo;
+                IRS = 0.0287 * @employee.sueldo;
+                Desc = (SFS + AFP);
+                SueldoN = Desc;
+            }
+
+        }
+        else
+        {
+            SFS = 0.0304 * @employee.sueldo;
+            AFP = 0.0287 * @employee.sueldo;
+            IRS = 0.0287 * @employee.sueldo;
+            Desc = (SFS + AFP);
+            SueldoN = Desc;
+        }
+
+
+
+
+        //Listado
+        <tr class="">
+            <td class="font-weight-bold">@employee.nombre</td>
+            <td class="font-weight-bold">@employee.apellido</td>
+            <td class="font-bold">@employee.cargo</td>
+            <td class="text-right">$@employee.sueldo</td>
+            <td class="text-right font-italic">$@SFS</td>
+            <td class="text-right font-italic">$@AFP</td>
+            <td class="text-right font-italic">$@IRS</td>
+            <td class="text-right font-italic">$@Desc</td>
+            <td class="bg-success text-right">$@SueldoN</td>
+        </tr>
+    }
+
+</table>
