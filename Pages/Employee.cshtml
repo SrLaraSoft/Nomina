@@ -1,21 +1,26 @@
 ﻿@page
 @model Nomina.Pages.EmployeeModel
-@{ ViewData["Title"] = "Employees";
+@{
+    ViewData["Title"] = "Employees";
 
 
+    double SFS; double AFP; double TotalTSS;
+    double IRS;    double Desc; double SueldoN;
 }
 
+<h4 class="text-right">@DateTime.Now</h4>
 <h1>Nomina</h1>
 
-<table class="table table-hover">
+<table class="table table-hover ">
 
-    <tr class="bg-primary text-center">
+    <tr class="bg-primary text-center text-white">
         <th>Nombre</th>
         <th>Apellido</th>
         <th>Cargo</th>
         <th>Sueldo</th>
         <th>ARS</th>
         <th>AFP</th>
+        <th>Total TSS</th>
         <th>IRS</th>
         <th>Total Descuento</th>
         <th>Sueldo Neto</th>
@@ -25,53 +30,99 @@
 
     @foreach (var employee in Model.Employees)
     {
-        double SFS; double AFP; double IRS;
-        double Desc; double SueldoN;
+        double sueldoMin = 13482;
 
-        if (employee.sueldo <= 100000)
+
+        if (employee.sueldo > 0)
         {
-            if (true)
+            double topeAFP = sueldoMin * 20;//269.640
+            double topeSFS = sueldoMin * 10;//134.820
+
+
+            //Calculo AFP
+            if ((employee.sueldo * 20) <= topeAFP)
             {
-                SFS = 0.0304 * @employee.sueldo;
-                AFP = 0.0287 * @employee.sueldo;
-                IRS = 0.0287 * @employee.sueldo;
-                Desc = (SFS + AFP);
-                SueldoN = Desc;
+                AFP = @employee.sueldo * 0.0287;
             }
+
             else
             {
-                SFS = 0.0304 * @employee.sueldo;
-                AFP = 0.0287 * @employee.sueldo;
-                IRS = 0.0287 * @employee.sueldo;
-                Desc = (SFS + AFP);
-                SueldoN = Desc;
+                AFP = 0.0287 * topeAFP;
             }
+
+
+
+            //Calculo SFS
+            if ((employee.sueldo * 10) <= topeAFP)
+            {
+                SFS = 0.0304 * @employee.sueldo;
+            }
+
+            else
+            {
+                SFS = 0.0304 * topeAFP;
+            }
+
+            //Calculo IRS
+            if (employee.sueldo <= 416220.00)
+            {
+                IRS = 0;
+            }
+            else if (employee.sueldo >= 416220.01 && employee.sueldo <= 624329.00)
+            {
+                double exc = 416220.01 - employee.sueldo;
+
+                IRS = 0.15 * exc;
+            }
+
+            else if (employee.sueldo >= 624329.01 && employee.sueldo <= 867123.00)
+            {
+                double exc = (624329.01 - employee.sueldo);
+                IRS = (0.20 * exc) + 31216.00;
+
+            }
+
+            else
+            {
+                double exc = (867123.01 - employee.sueldo);
+                IRS = (0.25 * exc) + 79776.00;
+
+            }
+
+
+            TotalTSS = SFS + AFP;
+            Desc = TotalTSS + IRS;
+
+            SueldoN = employee.sueldo - Desc;
+
 
         }
         else
         {
-            SFS = 0.0304 * @employee.sueldo;
-            AFP = 0.0287 * @employee.sueldo;
-            IRS = 0.0287 * @employee.sueldo;
-            Desc = (SFS + AFP);
-            SueldoN = Desc;
+            SFS = 0;
+            AFP = 0;
+            TotalTSS = SFS + AFP;
+            IRS = 0;
+            Desc = 0;
+            SueldoN = 0;
         }
 
 
 
 
         //Listado
-        <tr class="">
-            <td class="font-weight-bold">@employee.nombre</td>
-            <td class="font-weight-bold">@employee.apellido</td>
-            <td class="font-bold">@employee.cargo</td>
-            <td class="text-right">$@employee.sueldo</td>
-            <td class="text-right font-italic">$@SFS</td>
-            <td class="text-right font-italic">$@AFP</td>
-            <td class="text-right font-italic">$@IRS</td>
-            <td class="text-right font-italic">$@Desc</td>
-            <td class="bg-success text-right">$@SueldoN</td>
-        </tr>
+<tr class="">
+    <td class="font-weight-bold">@employee.nombre</td>
+    <td class="font-weight-bold">@employee.apellido</td>
+    <td class="font-bold">@employee.cargo</td>
+    <td class="text-right">$@employee.sueldo.ToString("0.00")</td>
+    <td class="text-right font-italic">$@SFS.ToString("0.00")</td>
+    <td class="text-right font-italic">$@AFP.ToString("0.00")</td>
+    <td class="text-right font-italic">$@TotalTSS.ToString("0.00")</td>
+    <td class="text-right font-italic">$@IRS.ToString("0.00")</td>
+    <td class="text-right font-italic">$@Desc.ToString("0.00")</td>
+    <td class="bg-success text-right text-white">$@SueldoN.ToString("0.00")</td>
+</tr>
     }
 
 </table>

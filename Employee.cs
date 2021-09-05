@@ -11,5 +11,8 @@ namespace Nomina
         public string apellido { get; set; }
         public string cargo { get; set; }
         public double sueldo { get; set; }
+
+
     }
+
 }
