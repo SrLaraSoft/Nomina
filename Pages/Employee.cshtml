@@ -50,7 +50,7 @@
 
 
             //Calculo AFP
-            if (topeAFP >= (employee.sueldo * 20))
+            if (topeAFP >= (employee.sueldo * 20)/12)
             {
                 AFP = @employee.sueldo * 0.0287;
             }
@@ -62,7 +62,7 @@
 
 
             //Calculo SFS
-            if (topeAFP >= (employee.sueldo * 10))
+            if (topeAFP >= (employee.sueldo * 10)/12)
             {
                 SFS = @employee.sueldo * 0.0304;
             }
@@ -80,29 +80,34 @@
 
 
             //Calculo IRS
-            if ((employee.sueldo * 12) <= 416220.00)
+            if ((TSSaplicado * 12) <= 416220.00)
             {
                 IRS = 0;
             }
 
-            else if ((employee.sueldo * 12) >= 416220.01 && (employee.sueldo * 12) <= 624329.00)
+            else if ((TSSaplicado * 12) >= 416220.01 && (TSSaplicado * 12) <= 624329.00)
             {
-                excedente = TSSaplicado - 416220.01;
+                double m = TSSaplicado * 12;
+
+                excedente = m - 416220.01;
 
                 IRS = excedente * 0.15;
 
             }
 
-            else if ((employee.sueldo * 12) >= 624329.01 && (employee.sueldo * 12) <= 867123.00)
+            else if ((TSSaplicado * 12) >= 624329.01 && (TSSaplicado * 12) <= 867123.00)
             {
-                excedente = (TSSaplicado - 624329.01);
+                double m = TSSaplicado * 12;
+
+                excedente = (m - 624329.01);
 
                 IRS = (excedente * 0.20) + 31216.00;
             }
 
             else
             {
-                excedente = (TSSaplicado - 867123.01);
+                double m = TSSaplicado * 12;
+                excedente = (m - 867123.01);
                 IRS = (excedente * 0.25) + 79776.00;
 
             }
