@@ -43,10 +43,11 @@
         sueldoMin = 13482;
 
 
-        if (employee.sueldo > 0)
+        if (employee.sueldo > sueldoMin)
         {
             topeAFP = sueldoMin * 20;//269.640
             topeSFS = sueldoMin * 10;//134.820
+
 
 
             //Calculo AFP
@@ -88,21 +89,23 @@
             }
             else if ((TSSaplicado * 12) >= 416220.01 && (TSSaplicado * 12) <= 624329.00)
             {
-                excedente = employee.sueldo - 416220.01;
+                excedente = TSSaplicado - 416220.01;
 
                 IRS = excedente * 0.15;
+
             }
 
             else if ((TSSaplicado * 12) >= 624329.01 && (TSSaplicado * 12) <= 867123.00)
             {
-                excedente = (employee.sueldo - 624329.01);
+                excedente = (TSSaplicado - 624329.01);
+
                 IRS = (excedente * 0.20) + 31216.00;
 
             }
 
             else
             {
-                excedente = (employee.sueldo - 867123.01);
+                excedente = (TSSaplicado - 867123.01);
                 IRS = (excedente * 0.25) + 79776.00;
 
             }
@@ -121,7 +124,7 @@
             TotalTSS = SFS + AFP;
             IRS = 0;
             TDesc = 0;
-            SueldoN = 0;
+            SueldoN = employee.sueldo;
         }
 
 

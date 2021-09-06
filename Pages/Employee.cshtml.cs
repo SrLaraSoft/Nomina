@@ -22,7 +22,7 @@ namespace Nomina.Pages
                 new Employee(){ nombre = "Manuel", apellido = "Garcia Rodriguez", cargo = "Diseñador", sueldo = 20000},
                 new Employee(){ nombre = "Katerin", apellido = "Perez", cargo = "Administrador", sueldo = 269640},
                 new Employee(){ nombre = "Rossy", apellido = "Lora", cargo = "Asistente", sueldo = 1},
-                new Employee(){ nombre = "Juan", apellido = "Lopez", cargo = "Programador", sueldo = 700000},
+                new Employee(){ nombre = "Juan", apellido = "Lopez", cargo = "Programador", sueldo = 30000},
                 new Employee(){ nombre = "Luis", apellido = "Ruiz", cargo = "Desarrollador", sueldo = 80000},
                 new Employee(){ nombre = "Manuel", apellido = "Garcia", cargo = "Diseñador", sueldo = 55000},
                 new Employee(){ nombre = "Katerin", apellido = "Perez", cargo = "Administrador", sueldo = 70000},
