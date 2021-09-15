@@ -48,28 +48,38 @@
             topeAFP = sueldoMin * 20;//269.640
             topeSFS = sueldoMin * 10;//134.820
 
-
             //Calculo AFP
-            if (topeAFP >= (employee.sueldo * 20)/12)
-            {
-                AFP = @employee.sueldo * 0.0287;
-            }
+            CalculoAFP(employee.sueldo);
 
-            else
+            double CalculoAFP (double sueldo)
             {
-                AFP = topeAFP * 0.0287;
-            }
+                if (topeAFP >= (sueldo * 20) / 12)
+                {
+                    AFP = sueldo * 0.0287;
+                }
 
+                else
+                {
+                    AFP = topeAFP * 0.0287;
+                }
+                return AFP;
+            }
 
             //Calculo SFS
-            if (topeAFP >= (employee.sueldo * 10)/12)
-            {
-                SFS = @employee.sueldo * 0.0304;
-            }
+            CalculoSFS(employee.sueldo);
 
-            else
+            double CalculoSFS (double sueldo)
             {
-                SFS = topeSFS * 0.0304;
+                if (topeAFP >= (sueldo * 10) / 12)
+                {
+                    SFS = sueldo * 0.0304;
+                }
+
+                else
+                {
+                    SFS = topeSFS * 0.0304;
+                }
+                return SFS;
             }
 
             //Descuento
@@ -78,38 +88,43 @@
             //Sueldo con descuento de la TSS aplicado
             TSSaplicado = employee.sueldo - TotalTSS;
 
-
             //Calculo IRS
-            if ((TSSaplicado * 12) <= 416220.00)
+            CalculoIRS(TSSaplicado);
+
+            double CalculoIRS(double sueldo)
             {
-                IRS = 0;
-            }
+                if ((sueldo * 12) <= 416220.00)
+                {
+                    IRS = 0;
+                }
 
-            else if ((TSSaplicado * 12) >= 416220.01 && (TSSaplicado * 12) <= 624329.00)
-            {
-                double m = TSSaplicado * 12;
+                else if ((sueldo * 12) >= 416220.01 && (sueldo * 12) <= 624329.00)
+                {
+                    double m = sueldo * 1;
 
-                excedente = m - 416220.01;
+                    excedente = m - 416220.01;
 
-                IRS = excedente * 0.15;
+                    IRS = excedente * 0.15;
 
-            }
+                }
 
-            else if ((TSSaplicado * 12) >= 624329.01 && (TSSaplicado * 12) <= 867123.00)
-            {
-                double m = TSSaplicado * 12;
+                else if ((sueldo * 12) >= 624329.01 && (sueldo * 12) <= 867123.00)
+                {
+                    double m = sueldo * 12;
 
-                excedente = (m - 624329.01);
+                    excedente = (m - 624329.01);
 
-                IRS = (excedente * 0.20) + 31216.00;
-            }
+                    IRS = (excedente * 0.20) + 31216.00;
+                }
 
-            else
-            {
-                double m = TSSaplicado * 12;
-                excedente = (m - 867123.01);
-                IRS = (excedente * 0.25) + 79776.00;
+                else
+                {
+                    double m = sueldo * 12;
+                    excedente = (m - 867123.01);
+                    IRS = (excedente * 0.25) + 79776.00;
 
+                }
+                return IRS;
             }
 
 

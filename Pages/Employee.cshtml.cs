@@ -18,15 +18,15 @@ namespace Nomina.Pages
             this.Employees = new List<Employee>()
             {
                 new Employee(){ nombre = "Juan", apellido = "Lopez", cargo = "Programador", sueldo = 13482},
-                new Employee(){ nombre = "Luis", apellido = "Ruiz", cargo = "Desarrollador", sueldo = 0},
+                new Employee(){ nombre = "Luis", apellido = "Ruiz", cargo = "Desarrollador", sueldo = 20000},
                 new Employee(){ nombre = "Manuel", apellido = "Garcia Rodriguez", cargo = "Diseñador", sueldo = 20000},
-                new Employee(){ nombre = "Katerin", apellido = "Perez", cargo = "Administrador", sueldo = 269640},
+                new Employee(){ nombre = "Katerin", apellido = "Perez", cargo = "Administrador", sueldo = 69640},
                 new Employee(){ nombre = "Rossy", apellido = "Lora", cargo = "Asistente", sueldo = 1},
                 new Employee(){ nombre = "Juan", apellido = "Lopez", cargo = "Programador", sueldo = 28500},
                 new Employee(){ nombre = "Luis", apellido = "Ruiz", cargo = "Desarrollador", sueldo = 21000},
                 new Employee(){ nombre = "Manuel", apellido = "Garcia", cargo = "Diseñador", sueldo = 65000},
                 new Employee(){ nombre = "Katerin", apellido = "Perez", cargo = "Administrador", sueldo = 45000},
-                new Employee(){ nombre = "Rossy", apellido = "Lora", cargo = "Asistente", sueldo = 15000},
+                new Employee(){ nombre = "Rossy", apellido = "Lora", cargo = "Asistente", sueldo = 50000},
                 };
 
         }
