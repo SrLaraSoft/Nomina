@@ -25,7 +25,7 @@
 
     <tr class="bg-primary text-center text-white">
         <th>Nombre</th>
-        <th>Apellido</th>
+        <th>ApellidoS</th>
         <th>Cargo</th>
         <th>Sueldo</th>
         <th>ARS</th>
@@ -100,7 +100,7 @@
 
                 else if ((sueldo * 12) >= 416220.01 && (sueldo * 12) <= 624329.00)
                 {
-                    double m = sueldo * 1;
+                    double m = sueldo * 12;
 
                     excedente = m - 416220.01;
 
@@ -124,6 +124,7 @@
                     IRS = (excedente * 0.25) + 79776.00;
 
                 }
+                IRS = (IRS) / 12;
                 return IRS;
             }
 
@@ -140,8 +141,8 @@
             AFP = 0;
             TotalTSS = SFS + AFP;
             IRS = 0;
-            TDesc = 0;
-            SueldoN = employee.sueldo;
+            TDesc = TotalTSS + IRS;
+            SueldoN = employee.sueldo - TDesc;
         }
 
 
